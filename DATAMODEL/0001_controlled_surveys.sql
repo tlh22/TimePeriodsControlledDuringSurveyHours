@@ -47,4 +47,11 @@ SELECT DISTINCT "NoWaitingTimeID" AS "TimePeriodID"
 WHERE "TimePeriodID" NOT IN
     (SELECT DISTINCT "TimePeriodID"
     FROM demand."TimePeriodsControlledDuringSurveyHours")
-AND s."SurveyID" > 0
+AND s."SurveyID" > 0;
+
+-- Deal with any "At Any Time"
+UPDATE demand."TimePeriodsControlledDuringSurveyHours"
+SET "Controlled" = TRUE
+WHERE "TimePeriodID" = 1;
+
+-- TODO: any others?
