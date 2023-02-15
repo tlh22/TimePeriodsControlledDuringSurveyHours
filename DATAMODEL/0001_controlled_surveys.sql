@@ -27,6 +27,7 @@ FROM demand."Surveys",
 (SELECT DISTINCT "NoWaitingTimeID" AS "TimePeriodID"
  FROM mhtc_operations."Supply"
  WHERE "RestrictionTypeID" IN (201, 221, 224, 217, 222, 226) -- SYL, SRLs
+ AND "NoWaitingTimeID" IS NOT NULL
 ) as w
 WHERE "SurveyID" > 0;
 
@@ -37,11 +38,20 @@ FROM demand."Surveys" s,
 (SELECT DISTINCT "TimePeriodID"
  FROM mhtc_operations."Supply"
  WHERE "RestrictionTypeID" < 200
+ AND "TimePeriodID" IS NOT NULL
  UNION
 SELECT DISTINCT "NoWaitingTimeID" AS "TimePeriodID"
  FROM mhtc_operations."Supply"
- WHERE "RestrictionTypeID" > 200) AS t
+ WHERE "RestrictionTypeID" > 200
+ AND "NoWaitingTimeID" IS NOT NULL) AS t
 WHERE "TimePeriodID" NOT IN
     (SELECT DISTINCT "TimePeriodID"
     FROM demand."TimePeriodsControlledDuringSurveyHours")
-AND s."SurveyID" > 0
+AND s."SurveyID" > 0;
+
+-- Deal with any "At Any Time"
+UPDATE demand."TimePeriodsControlledDuringSurveyHours"
+SET "Controlled" = TRUE
+WHERE "TimePeriodID" = 1;
+
+-- TODO: any others?
