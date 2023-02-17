@@ -55,3 +55,15 @@ SET "Controlled" = TRUE
 WHERE "TimePeriodID" = 1;
 
 -- TODO: any others?
+
+/***
+-- With different days ...
+
+UPDATE demand."TimePeriodsControlledDuringSurveyHours" AS t1
+SET "Controlled" = COALESCE(t2."Controlled", false)
+FROM demand."TimePeriodsControlledDuringSurveyHours" t2
+WHERE t1."TimePeriodID" = t2."TimePeriodID"
+AND t2."SurveyID" = 101
+AND t1."SurveyID" IN (201, 301, 401)
+
+***/
