@@ -26,7 +26,7 @@ SELECT "SurveyID", "TimePeriodID"
 FROM demand."Surveys",
 (SELECT DISTINCT "NoWaitingTimeID" AS "TimePeriodID"
  FROM mhtc_operations."Supply"
- WHERE "RestrictionTypeID" IN (201, 221, 224, 217, 222, 226) -- SYL, SRLs
+ WHERE "RestrictionTypeID" IN (201, 221, 224, 217, 222, 226, 203, 207, 208) -- SYL, SRLs, ZigZags
  AND "NoWaitingTimeID" IS NOT NULL
 ) as w
 WHERE "SurveyID" > 0;
