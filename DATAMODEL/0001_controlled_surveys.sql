@@ -67,3 +67,25 @@ AND t2."SurveyID" = 101
 AND t1."SurveyID" IN (201, 301, 401)
 
 ***/
+
+
+/***
+ Tidy if time periods are removed
+ 
+ ***/
+
+/***
+
+DELETE FROM demand."TimePeriodsControlledDuringSurveyHours"
+WHERE "TimePeriodID" NOT IN (
+SELECT DISTINCT "TimePeriodID"
+ FROM mhtc_operations."Supply"
+ WHERE "RestrictionTypeID" < 200
+ AND "TimePeriodID" IS NOT NULL
+ UNION
+SELECT DISTINCT "NoWaitingTimeID" AS "TimePeriodID"
+ FROM mhtc_operations."Supply"
+ WHERE "RestrictionTypeID" > 200
+ AND "NoWaitingTimeID" IS NOT NULL)
+ 
+ ***/
