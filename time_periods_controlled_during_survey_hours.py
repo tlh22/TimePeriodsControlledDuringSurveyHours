@@ -70,7 +70,7 @@ from resources import *
 from TOMs.core.TOMsMessageLog import TOMsMessageLog
 from TOMs.restrictionTypeUtilsClass import TOMsConfigFile
 
-from demandVRMsForm.demand_VRMs_UtilsClass import DemandUtilsMixin
+from demandForm.demand_VRMs_UtilsClass import DemandUtilsMixin
 
 class time_periods_controlled_during_survey_hours(DemandUtilsMixin):
     """QGIS Plugin Implementation."""
