@@ -54,6 +54,10 @@ UPDATE demand."TimePeriodsControlledDuringSurveyHours"
 SET "Controlled" = TRUE
 WHERE "TimePeriodID" = 1;
 
+UPDATE demand."TimePeriodsControlledDuringSurveyHours"
+SET "Controlled" = FALSE
+WHERE "TimePeriodID" = 0;
+
 -- TODO: any others?
 
 /***
