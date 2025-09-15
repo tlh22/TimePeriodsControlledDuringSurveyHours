@@ -93,3 +93,14 @@ SELECT DISTINCT "NoWaitingTimeID" AS "TimePeriodID"
  AND "NoWaitingTimeID" IS NOT NULL)
  
  ***/
+
+/***
+-- ALTER if imported
+
+ALTER TABLE IF EXISTS demand."TimePeriodsControlledDuringSurveyHours"
+    ADD PRIMARY KEY ("gid");
+	
+ALTER TABLE IF EXISTS demand."TimePeriodsControlledDuringSurveyHours"
+    ADD UNIQUE ("SurveyID", "TimePeriodID");
+	
+***/
