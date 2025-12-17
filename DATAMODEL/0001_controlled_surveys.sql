@@ -2,7 +2,7 @@
 Set up table
 ***/
 
-DROP TABLE IF EXISTS demand."TimePeriodsControlledDuringSurveyHours" CASCADE;
+-- DROP TABLE IF EXISTS demand."TimePeriodsControlledDuringSurveyHours" CASCADE;
 
 CREATE TABLE demand."TimePeriodsControlledDuringSurveyHours"
 (
